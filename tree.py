@@ -37,6 +37,19 @@ class binarySearchTree:
             else:
                 current = current.left
 
+    # applies proc to every piece of datum in the tree
+    def apply(self, proc, root = None):
+        if root == None:
+            root = self.root
+        
+        if root.left != None:
+            self.apply(proc, root.left)
+
+        proc(root.datum)
+
+        if root.right != None:
+            self.apply(proc, root.right)
+
     # prints data in tree, sorted from smallest to largest
     def print(self, root = None):
         
@@ -54,6 +67,9 @@ class binarySearchTree:
 
 
 bt = binarySearchTree([6, 3, 4, 17, 14])
+bt.print()
+print()
+bt.apply(lambda x : x + 1)
 bt.print()
 
 
